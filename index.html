@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<link>
+  <title>Menu Card</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script src="./AddButton.js" ></script>
+  <script src="./MarkerHandler.js" ></script>
+
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+
+
+  <!-- Local StyleSheet -->
+  <link href="./style.css" rel= 'stylesheet' />
+  
+  
+  <!--Marker Handler Src-->
+ 
+
+</head>
+
+<body style="margin : 0px; overflow: hidden;">
+
+  <a-scene
+    buttons embedded vr-mode-ui="enabled: false"     
+    arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;debugUIEnabled: false;"
+    gesture-detector>
+
+    <a-assets>
+      <a-asset-item id = 'pizza-3D-Model' src = './assets/pizza/scene.gltf' ></a-asset-item>
+    </a-assets>
+
+    <a-entity camera></a-entity>
+
+
+    <a-marker type = 'pattern' id = 'markers' url = './assets/dish-markers/pizza-maker.patt' cursor = 'rayOrigin:mouse' marker-handler >
+    <a-entity position = '-1.5 0 0' id = 'pizza-model' gltf-model = '#pizza-3D-Model' gesture-handler scale = '0.05 0.05 0.05' ></a-entity>
+
+    <!-- Camera -->   
+
+    <a-plane position="0.5 0 0" width="1.5" heidght="1.5" rotation = '-90 0 0'>
+      <a-plane position="0 0.6 0" width="1.4" height="0.3" color="pink" rotation="0 0 0" >
+        <a-entity position = '0 0 0.1' rotation="0 0 0" text = 'font:exo2semibold; value: FARMHOUSE PIZZA; color: black; width: 1.8; height: 1; align: center;' ></a-entity>
+      </a-plane>
+      <a-entity position = '0 0 0.1' rotation="0 0 0" text = 'font:dejavu; color: blue; width: 1.8; value: Bread \nTomato Sauce \nMozzarella Cheese \nOlives \nJalapenos; align: center;'></a-entity>
+    </a-plane>
+    
+  </a-marker>
+  </a-scene>
+
+  <!-- Button Main Div -->
+
+  <div id = 'button-div'></div>
+ 
+</body>
+
+</html>
